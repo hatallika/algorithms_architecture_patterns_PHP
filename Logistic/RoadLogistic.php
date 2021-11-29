@@ -7,4 +7,9 @@ class RoadLogistic extends Logistic
         echo "Доставка по дороге" . PHP_EOL;
         return new Car();
     }
+
+    protected function createCostCalculation(): CostCalculation
+    {
+        return new RoadCalculation();
+    }
 }

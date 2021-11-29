@@ -5,11 +5,16 @@ include "Logistic/ShipLogistic.php";
 include "Transport/Transport.php";
 include "Transport/Car.php";
 include "Transport/Ship.php";
+include "CostCalculation/CostCalculation.php";
+include "CostCalculation/RoadCalculation.php";
+include "CostCalculation/ShipCalculation.php";
+
 
 
 function prog(Logistic $logistic){
     //приложение которое может работать не только с логистикой
     $logistic->startDelivery();
+    $logistic->calculate();
 
 }
 $logistic = new RoadLogistic();

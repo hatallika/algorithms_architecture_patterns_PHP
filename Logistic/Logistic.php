@@ -3,10 +3,12 @@
 abstract class Logistic
 {
     private Transport $transport;
+    private CostCalculation $cost;
 
     public function __construct()
     {
         $this->transport = $this->createTransport();
+        $this->cost = $this->createCostCalculation();
     }
 
     public function startDelivery()
@@ -18,7 +20,12 @@ abstract class Logistic
         echo "Разгружаем" . PHP_EOL;
     }
 
-
+    public function calculate()
+    {
+        echo "Начинаем расчет стоимости" . PHP_EOL;
+        $this->cost->calculation();
+    }
 
     abstract protected function createTransport(): Transport;
+    abstract protected function createCostCalculation(): CostCalculation;
 }

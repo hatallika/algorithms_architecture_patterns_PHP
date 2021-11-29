@@ -8,5 +8,10 @@ class ShipLogistic extends Logistic
         echo "Доставка по морю" . PHP_EOL;
         return new Ship();
     }
+
+    protected function createCostCalculation(): CostCalculation
+    {
+        return new ShipCalculation();
+    }
 }
 
