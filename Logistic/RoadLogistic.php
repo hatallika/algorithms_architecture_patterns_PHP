@@ -12,4 +12,10 @@ class RoadLogistic extends Logistic
     {
         return new RoadCalculation();
     }
+
+
+    protected function createDocumentationReport(): DocumentationReport
+    {
+        return new RoadReport();
+    }
 }

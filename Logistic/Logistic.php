@@ -4,11 +4,13 @@ abstract class Logistic
 {
     private Transport $transport;
     private CostCalculation $cost;
+    private DocumentationReport $report;
 
     public function __construct()
     {
         $this->transport = $this->createTransport();
         $this->cost = $this->createCostCalculation();
+        $this->report = $this->createDocumentationReport();
     }
 
     public function startDelivery()
@@ -26,6 +28,14 @@ abstract class Logistic
         $this->cost->calculation();
     }
 
+    public function report_generation()
+    {
+        echo "Формируем отчеты по документации" . PHP_EOL;
+        $this->report->generation();
+    }
+
     abstract protected function createTransport(): Transport;
     abstract protected function createCostCalculation(): CostCalculation;
+    abstract protected function createDocumentationReport(): DocumentationReport;
+
 }

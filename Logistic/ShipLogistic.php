@@ -13,5 +13,10 @@ class ShipLogistic extends Logistic
     {
         return new ShipCalculation();
     }
+
+    protected function createDocumentationReport(): DocumentationReport
+    {
+        return new ShipReport();
+    }
 }
 
