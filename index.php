@@ -1,19 +1,11 @@
 <?php
 
-use adapters\{CircleAdapter, SquareAdapter};
-use library\{CircleAreaLib, SquareAreaLib};
-
-spl_autoload_register(function ($className){
-    include $className . ".php";
+spl_autoload_register(function ($classname) {
+    require_once ($classname.'.php');
 });
 
+$message = "Добрый день! Вы подписаны на рассылку";
+$notifier = new EmailNotifier(new SMSNotifier(new BaseNotifier()));
+$notifier = new ChromeNotifier($notifier);
+$notifier->send($message);
 
-function client($sideSquare, $circumference ) {
-    $squareArea = (new SquareAdapter(new SquareAreaLib()))->squareArea($sideSquare);
-    echo "Площадь квадрата со стороной {$sideSquare} равна {$squareArea}" . PHP_EOL;
-
-    $circleArea = (new CircleAdapter(new CircleAreaLib()))->circleArea($circumference);
-    echo "Площадь окружности с длинной окружности $circumference равна $circleArea" . PHP_EOL;
-}
-
-client(3,7);
