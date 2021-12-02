@@ -1,29 +1,19 @@
 <?php
-include "FurnitureFactory/FurnitureFactory.php";
-include "FurnitureFactory/ModernFurnitureFactory.php";
-include "FurnitureFactory/VictorianFurnitureFactory.php";
-include "Chair/Chair.php";
-include "Chair/VictorianChair.php";
-include "Chair/ModernChair.php";
-include "CoffeeTable/CoffeeTable.php";
-include "CoffeeTable/ModernCoffeeTable.php";
-include "CoffeeTable/VictorianCoffeeTable.php";
-include "Sofa/Sofa.php";
-include "Sofa/VictorianSofa.php";
-include "Sofa/ModernSofa.php";
+
+use adapters\{CircleAdapter, SquareAdapter};
+use library\{CircleAreaLib, SquareAreaLib};
+
+spl_autoload_register(function ($className){
+    include $className . ".php";
+});
 
 
-function clientCode(FurnitureFactory $factory)
-{
-    $chair = $factory->createChair();
-    $coffeeTable = $factory->createCoffeeTable();
-    $sofa = $factory->createSofa();
+function client($sideSquare, $circumference ) {
+    $squareArea = (new SquareAdapter(new SquareAreaLib()))->squareArea($sideSquare);
+    echo "Площадь квадрата со стороной {$sideSquare} равна {$squareArea}" . PHP_EOL;
 
-    echo $chair->getDescription() . "\n";
-    echo $coffeeTable->getDescription() . "\n";
-    echo $sofa->getDescription() . "\n";
+    $circleArea = (new CircleAdapter(new CircleAreaLib()))->circleArea($circumference);
+    echo "Площадь окружности с длинной окружности $circumference равна $circleArea" . PHP_EOL;
 }
-echo "Комплект мебели в стиле модерн:\n";
-clientCode(new ModernFurnitureFactory());
-echo "Комплект мебели в Викторианском:\n";
-clientCode(new VictorianFurnitureFactory());
+
+client(3,7);
