@@ -5,15 +5,15 @@ spl_autoload_register(function ($class) {
 
 $orderDetails = new OrderDetails(1200, '5775445664');
 function testStrategy($orderDetails){
-    $order = new Order($orderDetails);
+    $payment = new Payment($orderDetails);
 
     echo "Оплата Qiwi" . PHP_EOL;
-    $order->pay(new QiwiPayment());
+    $payment->pay(new QiwiPayment());
 
     echo "Оплата Yandex" . PHP_EOL;
-    $order->pay(new YaPayment());
+    $payment->pay(new YaPayment());
 
     echo "Оплата WebMoney" . PHP_EOL;
-    $order->pay(new WebMoneyPayment());
+    $payment->pay(new WebMoneyPayment());
 }
 testStrategy($orderDetails);

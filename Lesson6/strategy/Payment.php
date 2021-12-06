@@ -1,6 +1,6 @@
 <?php
 
-class Order
+class Payment
 {
     protected OrderDetails $orderDetails;
 
